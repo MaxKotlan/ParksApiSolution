@@ -1,0 +1,20 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: parks-api-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+  labels:
+    name: parks-api-ingress
+spec:
+  rules:
+  - host: hiking.dev
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/hiking(/|$)(.*)"
+        backend:
+          service:
+            name: parks-api-service
+            port: 
+              number: 8090

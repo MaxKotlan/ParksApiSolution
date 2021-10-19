@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: parks-api
+spec:
+  selector:
+    matchLabels:
+      app: parks-api
+  template:
+    metadata:
+      labels:
+        app: parks-api
+    spec:
+      containers:
+      - name: parks-api
+        image: parks-api:1.0.0
+        # resources:
+        #   limits:
+        #     memory: "128Mi"
+        #     cpu: "500m"
+        ports:
+        - containerPort: 80
